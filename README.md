@@ -1,4 +1,4 @@
-# provider
+# mybatis查询模型
 mybatis 多参数查询模型
 # 实现目标
 1.用户端选择相应查询的列columnName, 输入对应列的值columnValue,选择匹配方式mapType(精准匹配,模糊匹配,大于输入值,小于输入值等);
