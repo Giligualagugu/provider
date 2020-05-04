@@ -1,6 +1,12 @@
 # mybatis查询模型
 mybatis 多参数查询模型
-# 实现目标
-1.用户端选择相应查询的列columnName, 输入对应列的值columnValue,选择匹配方式mapType(精准匹配,模糊匹配,大于输入值,小于输入值等);  
-2.用户端可以输入多组条件,后端收到的是List&lt;QueryObject&gt;, QueryObject包含了属性(columnName,columnValue,mapType等);  
-3.使用mybatis的动态标签<where> <if> <foreach>等解析成多条件查询语句;  
+## 实现目标
+  1.用户端选择相应查询的列columnName, 输入对应列的值columnValue,选择匹配方式mapType(精准匹配,模糊匹配,大于输入值,小于输入值等);  
+  2.用户端可以输入多组条件,后端收到的是List&lt;QueryObject&gt;QueryObject包含了属性(columnName,columnValue,mapType等);  
+  3.使用mybatis的动态标签<where> <if> <foreach>等解析成多条件查询语句;  
+## 扩展目标
+  1.维护一个查询模型表,保存用户自定义的查询条件集合;  
+  2.维护一个任务表,用户每次提交的查询请求保存为一个任务, 异步处理这个sql查询;  
+  3.因数据量较大,使用异步任务,任务执行完毕跟新到任务表对应的状态;  
+  4.用户查询自己的任务表,做下一步处理;
+  5.任务结果表, 假如每次输出结果的字段不变,可以维护一张任务结果表,用户存储每次查询模型输出的数据;
