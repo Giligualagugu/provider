@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.ProjectMapper">
+
+    <select id="selectByList" parameterType="java.util.List" resultType="org.example.mapper.ProjectInfo">
+        select * from project_info
+        <where>
+            <!-- 入参是list包裹的对象集合..处理方式   -->
+            <foreach collection="list" item="obj">
+                <if test="obj.mapType==@org.example.mapper.ProjectMapType@LIKE">
+                    and ${obj.keyName} like concat('%',#{obj.keyValue},'%')
+                </if>
+                <if test="obj.mapType==@org.example.mapper.ProjectMapType@EQUAL">
+                    and ${obj.keyName} = #{obj.keyValue}
+                </if>
+                <if test="obj.mapType==@org.example.mapper.ProjectMapType@GT">
+                    <!--   大于等于输入值    -->
+                    and ${obj.keyName} &gt;= #{obj.keyValue}
+                </if>
+                <if test="obj.mapType==@org.example.mapper.ProjectMapType@LT">
+                    <!--  小于等于输入值 -->
+                    and ${obj.keyName} &lt;= #{obj.keyValue}
+                </if>
+            </foreach>
+        </where>
+    </select>
+
+</mapper>
