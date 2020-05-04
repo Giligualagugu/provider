@@ -17,7 +17,7 @@ public class ProjectService {
     @Autowired
     private ProjectMapper mapper;
 
-    public void testQuery() {
+    public List<ProjectInfo> testQuery(List<QueryObject> queryList) {
 
         List<QueryObject> list = new ArrayList<>(3);
 
@@ -29,7 +29,6 @@ public class ProjectService {
         QueryObject build2 = QueryObject.builder().keyName("id")
                 .keyValue(3).mapType(ProjectMapType.EQUAL)
                 .keyType(JdbcType.INTEGER).build();
-
 
 
         QueryObject build3 = QueryObject.builder().keyName("id")
@@ -46,10 +45,14 @@ public class ProjectService {
         list.add(build3);
         list.add(build4);
 
+     //   list.addAll(queryList);
+
         List<ProjectInfo> res = mapper.selectByList(list);
 
         System.out.println("===========================");
         System.out.println(res);
+
+        return res;
 
 
     }
