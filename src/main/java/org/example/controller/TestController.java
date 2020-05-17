@@ -40,4 +40,11 @@ public class TestController {
     public List<ColumnDto> getMapTpyes(@RequestParam(required = false) String key) throws Exception {
         return tabelService.getColumns("project_info");
     }
+
+
+    public static void main(String[] args) {
+
+        String content = "hello老铁";
+
+    }
 }
